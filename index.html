@@ -533,8 +533,9 @@
       .coaching-section, .coach-section, .testimonials-section,
       .faq-section, .achievement-section { padding: 72px 24px; }
       .booking-section { padding: 80px 24px; background: radial-gradient(ellipse 120% 80% at 50% 50%, rgba(216,216,216,0.13), transparent 70%), var(--bg-dark); }
-      .coaching-split { grid-template-columns: 1fr; gap: 8px; }
-      .coaching-right { padding: 24px; }
+      .coaching-split { grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+      .coaching-right { padding: 0; }
+      .coaching-right img { max-width: 100%; }
       .coach-inner { grid-template-columns: 1fr; gap: 48px; }
       .coach-photo-wrap { aspect-ratio: 4/3; max-width: 480px; }
       .achievement-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -1101,7 +1102,10 @@
 
 <script>
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (window.location.hash) history.replaceState(null, '', window.location.pathname);
   window.scrollTo(0, 0);
+  document.addEventListener('DOMContentLoaded', () => window.scrollTo(0, 0));
+  window.addEventListener('load', () => window.scrollTo(0, 0));
 
   function toggleFaq(el) {
     const item = el.parentElement;
