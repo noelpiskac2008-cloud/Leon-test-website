@@ -147,9 +147,9 @@
     }
     .stats-inner {
       max-width: 1240px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: stretch; justify-content: center;
     }
-    .stat-item { text-align: center; padding: 0 56px; position: relative; }
+    .stat-item { text-align: center; padding: 0 56px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .stat-item:not(:last-child)::after {
       content: ''; position: absolute; right: 0; top: 50%;
       transform: translateY(-50%); width: 1px; height: 32px;
@@ -316,11 +316,11 @@
     .community-img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; object-position: center 30%;
-      filter: grayscale(20%) brightness(0.48);
+      filter: grayscale(20%) brightness(0.28);
     }
     .community-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.28) 40%, rgba(14,14,14,0.65) 100%);
+      background: linear-gradient(to bottom, rgba(14,14,14,0.65) 0%, rgba(14,14,14,0.45) 40%, rgba(14,14,14,0.75) 100%);
     }
     .community-content {
       position: relative; z-index: 1;
@@ -549,10 +549,10 @@
   <div class="hero-content">
     <div class="hero-eyebrow">2Fit Fitness Coaching</div>
     <h1 class="hero-heading">
-      Manje planiranja.<br><em>Više napretka.</em>
+      Izgradi rezultate<br><em>koji traju.</em>
     </h1>
     <p class="hero-body">
-      Stručni osobni coaching prilagođen tvom tijelu, ciljevima i životnom stilu. Treniraj s namjerom, oporavljaj se pametnije i izgradi rezultate koji traju.
+      Stručni osobni coaching prilagođen tvom tijelu, ciljevima i životnom stilu.
     </p>
     <div class="hero-ctas">
       <a href="#contact"  class="btn-primary">Rezerviraj besplatne konzultacije</a>
@@ -709,19 +709,25 @@
       <img src="WhatsApp%20Image%202026-04-19%20at%2011.24.19.jpeg" alt="Trener i osnivač" class="coach-photo">
       <div class="coach-photo-overlay"></div>
       <div class="coach-name-tag">
-        <div class="coach-name">Trener i osnivač</div>
-        <div class="coach-role">Glavni trener · 2Fit</div>
+        <div class="coach-name">Leon Piskač</div>
+        <div class="coach-role">Fitness trener · 2Fit</div>
       </div>
     </div>
 
     <div>
       <div class="coach-eyebrow">Upoznaj svog trenera</div>
-      <h2 class="coach-heading">Izgradio ga je netko tko to živi svaki dan.</h2>
+      <h2 class="coach-heading">Leon Piskač</h2>
       <p class="coach-body">
-        2Fit je izgrađen na jednostavnom uvjerenju: svaka osoba zaslužuje trenera koji stvarno sluša. Počeo sam trenirati ljude jer sam vidio previše njih koji slijede generičke planove koji zanemaruju kako individualni napredak zaista funkcionira.
+        Zovem se Leon, imam 23 godine i profesionalni sam fitness trener s više od 3 godine iskustva. Pomogao sam preko 100 klijenata da postignu vidljive i dugoročne rezultate, a s mnogima od njih surađujem već godinama.
       </p>
       <p class="coach-body">
-        Treniram te kao osobu, ne kao broj. Uzimam u obzir tvoj raspored, dosadašnje iskustvo i ciljeve — te gradim program koji se uklapa u tvoj život, ne obrnuto. Svaki tjedan pratim tvoj napredak i prilagođavam plan dok ne vidimo rezultate koji stvarno traju.
+        Specijaliziran sam za individualni pristup — svaki plan treninga i prehrane prilagođen je tvojem cilju, tempu i životnom stilu.
+      </p>
+      <p class="coach-body">
+        Uz coaching, aktivno se bavim powerliftingom te sam državni rekorder i najjači junior 2025. godine.
+      </p>
+      <p class="coach-body">
+        Ako tražiš jasan plan, podršku i rezultate koji traju — na pravom si mjestu.
       </p>
 
       <div class="coach-pills">
@@ -735,15 +741,10 @@
         </span>
         <span class="coach-pill">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Specijalist prehrane
-        </span>
-        <span class="coach-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           100+ klijenata
         </span>
       </div>
 
-      <a href="#achievements" class="btn-outline">O meni</a>
     </div>
 
   </div>
