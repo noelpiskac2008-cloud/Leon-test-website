@@ -504,9 +504,10 @@
     @media (max-width: 960px) {
       .site-nav { padding: 0 24px; }
       .nav-links { display: none; }
-      .hero-content { padding: 80px 24px 60px; }
-      .hero-heading { font-size: clamp(58px, 15vw, 80px); margin-bottom: 16px; }
-      .hero-body { font-size: 13px; line-height: 1.6; margin-bottom: 32px; }
+      .hero-content { padding: 80px 24px 60px; text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-heading { font-size: clamp(58px, 15vw, 80px); margin-bottom: 16px; max-width: 100%; }
+      .hero-body { font-size: 13px; line-height: 1.6; margin-bottom: 32px; max-width: 100%; }
       .hero-ctas { justify-content: center; }
       .hero-ctas .btn-primary { font-size: 14px; padding: 13px 28px; }
       .hero-ctas .btn-outline { font-size: 12px; padding: 10px 22px; }
@@ -526,13 +527,7 @@
       .stat-item:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.1); }
       .coaching-section, .coach-section, .testimonials-section,
       .faq-section, .achievement-section { padding: 72px 24px; }
-      .booking-section { padding: 80px 24px; background: #E8E8E8; }
-      .booking-section .booking-eyebrow { color: rgba(20,20,20,0.45); }
-      .booking-section .booking-heading { color: #141414; }
-      .booking-section .booking-sub { color: rgba(20,20,20,0.55); }
-      .booking-section .booking-note { color: rgba(20,20,20,0.3); }
-      .booking-section .btn-primary { background: #141414; color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
-      .booking-section .btn-primary:hover { background: #2a2a2a; }
+      .booking-section { padding: 80px 24px; background: radial-gradient(ellipse 120% 80% at 50% 50%, rgba(216,216,216,0.13), transparent 70%), var(--bg-dark); }
       .coaching-header { grid-template-columns: 1fr; gap: 24px; }
       .coaching-grid { grid-template-columns: 1fr; }
       .coach-inner { grid-template-columns: 1fr; gap: 48px; }
