@@ -528,7 +528,7 @@
       .stats-inner { flex-wrap: wrap; gap: 0; }
       .stat-item { padding: 20px 0; width: 50%; }
       .stat-item:not(:last-child)::after { display: none; }
-      .stat-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.1); }
+      .stat-item:nth-child(odd):not(:last-child) { border-right: 1px solid rgba(255,255,255,0.1); }
       .stat-item:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.1); }
       .coaching-section, .coach-section, .testimonials-section,
       .faq-section, .achievement-section { padding: 72px 24px; }
