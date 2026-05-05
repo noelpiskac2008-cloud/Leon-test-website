@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2Fit Fitness Coaching — Treniraj s namjerom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #1A1A1A;
+      --bg-dark:  #141414;
+      --bg-black: #0E0E0E;
+      --surface:  #242424;
+      --border:   rgba(255,255,255,0.09);
+      --accent:   #D8D8D8;
+      --accent-hi:#F0F0F0;
+      --text:     #FFFFFF;
+      --muted:    #999999;
+      --faint:    #555555;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(10,10,10,0.93);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { text-decoration: none; flex-shrink: 0; display: flex; align-items: center; }
+    .nav-logo-img { height: 28px; width: auto; mix-blend-mode: lighten; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-link {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      padding: 6px 14px; text-decoration: none; border-radius: 6px;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .btn-nav {
+      background: var(--accent); color: var(--bg);
+      font-size: 13px; font-weight: 700; border-radius: 6px;
+      padding: 9px 20px; text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-nav:hover { background: var(--accent-hi); }
+    .btn-nav:active { transform: scale(0.97); }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent); color: var(--bg);
+      font-size: 15px; font-weight: 700;
+      padding: 14px 36px; border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 20px rgba(216,216,216,0.15);
+    }
+    .btn-primary:hover { background: var(--accent-hi); box-shadow: 0 6px 28px rgba(216,216,216,0.25); }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent; color: #fff;
+      font-size: 15px; font-weight: 600;
+      padding: 13px 36px; border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.22);
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+    .btn-outline:active { transform: scale(0.97); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 25%;
+      filter: grayscale(30%) brightness(0.32);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(14,14,14,0.94) 0%, rgba(14,14,14,0.72) 45%, rgba(14,14,14,0.28) 75%, rgba(14,14,14,0.6) 100%),
+        linear-gradient(to bottom, rgba(14,14,14,0.32) 0%, transparent 30%, rgba(14,14,14,0.55) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 1240px; margin: 0 auto; width: 100%;
+      padding: 100px 80px 80px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 28px;
+    }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--muted); }
+    .hero-heading {
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 900; line-height: 0.96;
+      letter-spacing: -0.03em; color: #fff;
+      margin-bottom: 28px; max-width: 680px;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.95), 0 8px 48px rgba(0,0,0,0.8);
+    }
+    .hero-heading em { font-style: normal; color: var(--accent); }
+    .hero-body {
+      font-size: 17px; line-height: 1.75; color: rgba(255,255,255,0.65);
+      max-width: 480px; margin-bottom: 44px; font-weight: 400;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; align-items: center; gap: 40px;
+      margin-top: 64px; padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      max-width: 480px;
+    }
+    .hero-stat-num { font-size: 28px; font-weight: 800; color: #fff; line-height: 1; }
+    .hero-stat-label {
+      font-size: 11px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;
+    }
+    .hero-stat-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 48px;
+    }
+    .stats-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stat-item { text-align: center; padding: 0 56px; position: relative; }
+    .stat-item:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%); width: 1px; height: 32px;
+      background: rgba(255,255,255,0.1);
+    }
+    .stat-stars { color: var(--accent); font-size: 14px; margin-bottom: 6px; letter-spacing: 2px; }
+    .stat-number { font-size: 28px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 5px; }
+    .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* ── ONLINE COACHING SHOWCASE ── */
+    .coaching-section {
+      background: var(--bg-dark);
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .coaching-inner { max-width: 1240px; margin: 0 auto; }
+    .coaching-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: end; margin-bottom: 64px;
+    }
+    .coaching-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .coaching-heading {
+      font-size: clamp(34px, 4vw, 54px); font-weight: 800;
+      line-height: 1.08; letter-spacing: -0.025em; color: #fff;
+    }
+    .coaching-sub {
+      font-size: 16px; line-height: 1.75; color: var(--muted); font-weight: 400; align-self: end;
+    }
+    .coaching-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: rgba(0,0,0,0.3);
+      border-radius: 12px; overflow: hidden;
+    }
+    .coaching-feature {
+      background: var(--surface);
+      padding: 40px 32px;
+      transition: background 0.2s ease;
+    }
+    .coaching-feature:hover { background: #2D2D2D; }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px; flex-shrink: 0;
+    }
+    .feature-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .feature-desc { font-size: 14px; line-height: 1.75; color: var(--muted); }
+    .coaching-cta { text-align: center; margin-top: 56px; }
+
+    /* ── COACH ── */
+    .coach-section {
+      background: var(--bg);
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .coach-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 420px 1fr;
+      gap: 88px; align-items: center;
+    }
+    .coach-photo-wrap {
+      position: relative; border-radius: 16px; overflow: hidden;
+      aspect-ratio: 3/4;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .coach-photo {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      filter: contrast(1.05) saturate(0.88); display: block;
+    }
+    .coach-photo-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, transparent 55%, rgba(17,17,17,0.7) 100%),
+        linear-gradient(to right, transparent 65%, rgba(17,17,17,0.2) 100%);
+    }
+    .coach-name-tag {
+      position: absolute; bottom: 24px; left: 24px;
+      background: rgba(17,17,17,0.88);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 14px 20px; border-radius: 10px;
+    }
+    .coach-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .coach-role { font-size: 11px; color: var(--accent); font-weight: 600; margin-top: 4px; letter-spacing: 0.04em; }
+    .coach-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .coach-heading {
+      font-size: clamp(30px, 3.5vw, 46px); font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.02em; color: #fff; margin-bottom: 20px;
+    }
+    .coach-body {
+      font-size: 15px; line-height: 1.85; color: var(--muted); margin-bottom: 18px;
+    }
+    .coach-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; margin-bottom: 32px; }
+    .coach-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px; padding: 8px 16px;
+      font-size: 13px; font-weight: 600; color: #ccc;
+    }
+    .coach-pill svg { color: var(--accent); flex-shrink: 0; }
+
+    /* ── ACHIEVEMENT (dark + purple gradient, two-column) ── */
+    .achievement-section {
+      background:
+        radial-gradient(ellipse 80% 80% at 50% -20%, rgba(216,216,216,0.06), transparent),
+        var(--bg-dark);
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .achievement-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 460px;
+      gap: 88px; align-items: center;
+    }
+    .achievement-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .achievement-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--muted); }
+    .achievement-heading {
+      font-size: clamp(44px, 5.5vw, 80px); font-weight: 900;
+      line-height: 0.94; letter-spacing: -0.035em; color: #fff;
+      margin-bottom: 48px;
+    }
+    .achievement-heading em { font-style: normal; color: var(--accent); }
+    .achievement-records { display: flex; flex-direction: column; gap: 20px; }
+    .achievement-record { display: flex; align-items: center; gap: 16px; }
+    .achievement-record-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .achievement-record-title { font-size: 16px; font-weight: 700; color: #fff; }
+    .achievement-record-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .achievement-photo-wrap {
+      position: relative; border-radius: 16px; overflow: hidden;
+      aspect-ratio: 3/4;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .achievement-photo {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 15%;
+      display: block; filter: contrast(1.05);
+    }
+
+    /* ── COMMUNITY BANNER ── */
+    .community-section {
+      position: relative; overflow: hidden;
+      min-height: 580px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .community-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+      filter: grayscale(20%) brightness(0.48);
+    }
+    .community-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.28) 40%, rgba(14,14,14,0.65) 100%);
+    }
+    .community-content {
+      position: relative; z-index: 1;
+      text-align: center; padding: 80px 40px; max-width: 720px;
+    }
+    .community-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+    }
+    .community-heading {
+      font-size: clamp(38px, 5.5vw, 68px); font-weight: 900;
+      line-height: 1.04; letter-spacing: -0.03em; color: #fff; margin-bottom: 20px;
+    }
+    .community-sub {
+      font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.65); margin-bottom: 40px;
+    }
+
+    /* ── TESTIMONIALS (animated columns, dark) ── */
+    @keyframes scrollUp {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+    .testimonials-section {
+      background: var(--bg);
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .testimonials-inner { max-width: 1240px; margin: 0 auto; }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); border: 1px solid rgba(255,255,255,0.15);
+      padding: 6px 18px; border-radius: 20px; margin-bottom: 20px;
+    }
+    .testimonials-heading {
+      font-size: clamp(28px, 4vw, 48px); font-weight: 800;
+      line-height: 1.08; letter-spacing: -0.025em; color: #fff; margin-bottom: 12px;
+    }
+    .testimonials-sub { font-size: 15px; color: var(--muted); }
+    .testi-columns {
+      display: flex; justify-content: center; gap: 24px;
+      max-height: 740px; overflow: hidden;
+      mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+    }
+    .testi-col { flex: 0 0 auto; width: 300px; overflow: hidden; }
+    .testi-col-md { display: none; }
+    .testi-col-lg { display: none; }
+    @media (min-width: 768px) { .testi-col-md { display: block; } }
+    @media (min-width: 1024px) { .testi-col-lg { display: block; } }
+    .testi-col-inner {
+      display: flex; flex-direction: column; gap: 24px;
+      padding-bottom: 24px;
+      animation: scrollUp linear infinite;
+    }
+    .tcard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      width: 300px;
+    }
+    .tcard-text { font-size: 14px; line-height: 1.8; color: var(--muted); margin-bottom: 20px; }
+    .tcard-footer {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 18px; border-top: 1px solid var(--border);
+    }
+    .tcard-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 800; color: var(--accent);
+    }
+    .tcard-name { font-size: 14px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .tcard-result { font-size: 12px; color: var(--accent); font-weight: 500; margin-top: 2px; }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--bg-dark);
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .faq-heading {
+      font-size: clamp(34px, 4vw, 54px); font-weight: 800;
+      line-height: 1.08; letter-spacing: -0.025em; color: #fff;
+    }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; cursor: pointer;
+      font-size: 15px; font-weight: 600; color: #fff; gap: 20px;
+      transition: color 0.2s ease; user-select: none;
+    }
+    .faq-question:hover { color: var(--muted); }
+    .faq-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--muted); font-size: 16px; line-height: 1;
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+    .faq-item.open .faq-icon { border-color: var(--accent); color: var(--accent); transform: rotate(45deg); }
+    .faq-answer {
+      font-size: 14px; line-height: 1.8; color: var(--muted);
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1), padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 320px; padding-bottom: 22px; }
+
+    /* ── BOOKING CTA (dark + purple gradient) ── */
+    .booking-section {
+      background:
+        radial-gradient(ellipse 80% 80% at 50% -20%, rgba(216,216,216,0.06), transparent),
+        var(--bg-dark);
+      padding: 120px 48px; text-align: center;
+      position: relative; overflow: hidden;
+      border-top: 1px solid var(--border);
+    }
+    .booking-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+    .booking-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .booking-heading {
+      font-size: clamp(40px, 6vw, 72px); font-weight: 900;
+      line-height: 0.96; letter-spacing: -0.03em; color: #fff; margin-bottom: 24px;
+    }
+    .booking-sub { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 48px; }
+    .booking-note { margin-top: 28px; font-size: 12px; font-weight: 500; color: var(--faint); letter-spacing: 0.04em; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-black);
+      padding: 64px 48px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner { max-width: 1240px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 56px; flex-wrap: wrap; gap: 40px;
+    }
+    .footer-logo { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 12px; }
+    .footer-tagline { font-size: 13px; color: var(--faint); max-width: 200px; line-height: 1.65; }
+    .footer-col h4 {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--faint); margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block; font-size: 14px; color: var(--muted);
+      text-decoration: none; margin-bottom: 11px; font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 28px; border-top: 1px solid var(--border);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-legal { font-size: 12px; color: var(--faint); }
+    .footer-legal a { color: var(--muted); text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal a:hover { color: #fff; }
+    .footer-socials { display: flex; gap: 8px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .social-btn:hover { border-color: rgba(255,255,255,0.25); color: #fff; background: rgba(255,255,255,0.05); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .site-nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 80px 24px 60px; }
+      .hero-stats { gap: 24px; }
+      .stats-bar { padding: 24px 16px; }
+      .stats-inner { flex-wrap: wrap; gap: 0; }
+      .stat-item { padding: 20px 0; width: 50%; }
+      .stat-item:not(:last-child)::after { display: none; }
+      .stat-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.1); }
+      .stat-item:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .coaching-section, .coach-section, .testimonials-section,
+      .faq-section, .booking-section, .achievement-section { padding: 72px 24px; }
+      .coaching-header { grid-template-columns: 1fr; gap: 24px; }
+      .coaching-grid { grid-template-columns: 1fr; }
+      .coach-inner { grid-template-columns: 1fr; gap: 48px; }
+      .coach-photo-wrap { aspect-ratio: 4/3; max-width: 480px; }
+      .achievement-inner { grid-template-columns: 1fr; gap: 48px; }
+      .achievement-photo-wrap { aspect-ratio: 3/4; max-width: 100%; }
+      footer { padding: 48px 24px 32px; }
+      .footer-top { flex-direction: column; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="#" class="nav-logo">
+    <img src="brand_assets/logo.jpeg" alt="2Fit" class="nav-logo-img">
+  </a>
+  <div class="nav-links">
+    <a href="#coaching" class="nav-link">Program</a>
+    <a href="#about"    class="nav-link">O meni</a>
+    <a href="#results"  class="nav-link">Rezultati</a>
+    <a href="#faq"      class="nav-link">FAQ</a>
+  </div>
+  <a href="#contact" class="btn-nav">Rezerviraj termin</a>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <img src="DSC01840.png" alt="2Fit community" class="hero-bg">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">2Fit Fitness Coaching</div>
+    <h1 class="hero-heading">
+      Manje planiranja.<br><em>Više napretka.</em>
+    </h1>
+    <p class="hero-body">
+      Stručni osobni coaching prilagođen tvom tijelu, ciljevima i životnom stilu. Treniraj s namjerom, oporavljaj se pametnije i izgradi rezultate koji traju.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact"  class="btn-primary">Rezerviraj besplatne konzultacije</a>
+      <a href="#coaching" class="btn-outline">Pogledaj program</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">100+</div>
+        <div class="hero-stat-label">Klijenata</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div>
+        <div class="hero-stat-num">5+ god.</div>
+        <div class="hero-stat-label">Iskustva</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div>
+        <div class="hero-stat-num">★ 4.9</div>
+        <div class="hero-stat-label">Ocjena klijenata</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-stars">★ ★ ★ ★ ★</div>
+      <div class="stat-number">4.9 Ocjena</div>
+      <div class="stat-label">Od naših klijenata</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100+</div>
+      <div class="stat-label">Klijenata</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5+ godina</div>
+      <div class="stat-label">Iskustva u coachingu</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">93%</div>
+      <div class="stat-label">Stopa postizanja ciljeva</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ONLINE COACHING SHOWCASE -->
+<section class="coaching-section" id="coaching">
+  <div class="coaching-inner">
+
+    <div class="coaching-header">
+      <div>
+        <div class="coaching-eyebrow">Online Coaching</div>
+        <h2 class="coaching-heading" style="font-size: clamp(44px, 5.5vw, 72px);">Sve što trebaš.</h2>
+      </div>
+      <p class="coaching-sub">
+        Personalizirani online coaching program dizajniran oko tebe — tvojih ciljeva, rasporeda i životnog stila. Isti rezultati kao u osobnom treningu, bez obzira gdje se nalaziš.
+      </p>
+    </div>
+
+    <div class="coaching-grid">
+
+      <div class="coaching-feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <div class="feature-title">Personalizirani plan treninga</div>
+        <p class="feature-desc">Svaki program gradim od nule oko tvog tijela, opreme i ciljeva. Nema predložaka, nema generičkih planova.</p>
+      </div>
+
+      <div class="coaching-feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+            <line x1="4" y1="6" x2="4" y2="18"/>
+            <line x1="4" y1="6" x2="8" y2="6"/>
+            <line x1="4" y1="12" x2="10" y2="12"/>
+            <circle cx="8" cy="6" r="2"/>
+            <circle cx="14" cy="12" r="2"/>
+            <line x1="14" y1="12" x2="20" y2="12"/>
+            <line x1="16" y1="18" x2="20" y2="18"/>
+            <circle cx="16" cy="18" r="2"/>
+            <line x1="16" y1="18" x2="4" y2="18"/>
+          </svg>
+        </div>
+        <div class="feature-title">Prilagodba</div>
+        <p class="feature-desc">Coaching se kontinuirano prilagođava tebi — kako se mijenjaju tvoji ciljevi, raspored ili životni stil, program ide s tobom.</p>
+      </div>
+
+      <div class="coaching-feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <div class="feature-title">Video knjižnica vježbi</div>
+        <p class="feature-desc">Pristup video demonstracijama svake vježbe u tvojem programu s uputama za pravilnu tehniku.</p>
+      </div>
+
+      <div class="coaching-feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+            <path d="M12 2a10 10 0 1 0 10 10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="feature-title">Prehrambene smjernice</div>
+        <p class="feature-desc">Prilagođene smjernice za prehranu koje se uklapaju u tvoj životni stil — bez restriktivnih dijeta.</p>
+      </div>
+
+      <div class="coaching-feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="feature-title">Podrška putem poruka</div>
+        <p class="feature-desc">Izravna podrška između sesija. Imaš pitanje ili problem — tu sam. Bez čekanja, bez posrednika.</p>
+      </div>
+
+      <div class="coaching-feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="feature-title">Praćenje napretka</div>
+        <p class="feature-desc">Svaki tjedan analiziramo podatke i prilagođavamo program — tako da uvijek napreduješ, nikad ne staješ.</p>
+      </div>
+
+    </div>
+
+    <div class="coaching-cta">
+      <a href="#contact" class="btn-primary" style="font-size:16px; padding:16px 48px;">Započni program</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MEET THE COACH -->
+<section class="coach-section" id="about">
+  <div class="coach-inner">
+
+    <div class="coach-photo-wrap">
+      <img src="WhatsApp%20Image%202026-04-19%20at%2011.24.19.jpeg" alt="Trener i osnivač" class="coach-photo">
+      <div class="coach-photo-overlay"></div>
+      <div class="coach-name-tag">
+        <div class="coach-name">Trener i osnivač</div>
+        <div class="coach-role">Glavni trener · 2Fit</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="coach-eyebrow">Upoznaj svog trenera</div>
+      <h2 class="coach-heading">Izgradio ga je netko tko to živi svaki dan.</h2>
+      <p class="coach-body">
+        2Fit je izgrađen na jednostavnom uvjerenju: svaka osoba zaslužuje trenera koji stvarno sluša. Počeo sam trenirati ljude jer sam vidio previše njih koji slijede generičke planove koji zanemaruju kako individualni napredak zaista funkcionira.
+      </p>
+      <p class="coach-body">
+        Treniram te kao osobu, ne kao broj. Uzimam u obzir tvoj raspored, dosadašnje iskustvo i ciljeve — te gradim program koji se uklapa u tvoj život, ne obrnuto. Svaki tjedan pratim tvoj napredak i prilagođavam plan dok ne vidimo rezultate koji stvarno traju.
+      </p>
+
+      <div class="coach-pills">
+        <span class="coach-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Certificirani osobni trener
+        </span>
+        <span class="coach-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Snaga i kondicija
+        </span>
+        <span class="coach-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Specijalist prehrane
+        </span>
+        <span class="coach-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          100+ klijenata
+        </span>
+      </div>
+
+      <a href="#achievements" class="btn-outline">O meni</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- POWERLIFTING ACHIEVEMENT -->
+<section class="achievement-section" id="achievements">
+  <div class="achievement-inner">
+
+    <div>
+      <div class="achievement-eyebrow">Natjecateljska karijera</div>
+      <h2 class="achievement-heading">Prvak Hrvatske<br>u <em>powerliftingu</em></h2>
+      <div class="achievement-records">
+        <div class="achievement-record">
+          <div class="achievement-record-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="achievement-record-title">Prvak Hrvatske</div>
+            <div class="achievement-record-sub">Powerlifting, juniorska kategorija</div>
+          </div>
+        </div>
+        <div class="achievement-record">
+          <div class="achievement-record-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <polyline points="6 10 12 4 18 10"/>
+            </svg>
+          </div>
+          <div>
+            <div class="achievement-record-title">Nositelj hrvatskih rekorda</div>
+            <div class="achievement-record-sub">Nacionalni rekordi u više disciplina</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="achievement-photo-wrap">
+      <img src="WhatsApp%20Image%202026-04-19%20at%2011.24.20.jpeg" alt="Powerlifting natjecanje" class="achievement-photo">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- COMMUNITY BANNER -->
+<section class="community-section">
+  <img src="DSC01840.png" alt="2Fit Community" class="community-img">
+  <div class="community-overlay"></div>
+  <div class="community-content">
+    <div class="community-eyebrow">Naša zajednica</div>
+    <h2 class="community-heading">Ne treniraš sam.</h2>
+    <p class="community-sub">Pridruži se stotinama članova koji dolaze, potiču jedni druge i zajedno postižu rezultate. Pravi ljudi, posvećen coaching, pravi napredak.</p>
+    <a href="#contact" class="btn-primary">Pridruži se</a>
+  </div>
+</section>
+
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="results">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="testimonials-eyebrow">Testimonials</div>
+      <h2 class="testimonials-heading">Što kažu naši klijenti</h2>
+      <p class="testimonials-sub">Pogledaj što klijenti kažu o 2Fit coachingu.</p>
+    </div>
+
+    <div class="testi-columns">
+
+      <!-- Column 1 — 15s -->
+      <div class="testi-col">
+        <div class="testi-col-inner" style="animation-duration:15s;">
+          <div class="tcard">
+            <p class="tcard-text">Za četiri mjeseca izgubio sam 18 kg i potpuno promijenio odnos prema treningu. Coaching je potpuno personaliziran — ništa generičko.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">M</div>
+              <div><div class="tcard-name">Marko</div><div class="tcard-result">Izgubio 18 kg za 4 mjeseca</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Nikad nisam mislila da ću uživati u treningu. 2Fit je promijenio moj odnos prema sportu — sada jedva čekam svaku sesiju.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">T</div>
+              <div><div class="tcard-name">Tea</div><div class="tcard-result">Aktivan stil života od 2024.</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Kao sportaš uvijek sam imao nestrukturiran trening. 2Fit je donio organizaciju i napredak koji je vidljiv na svakom natjecanju.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">T</div>
+              <div><div class="tcard-name">Tomislav</div><div class="tcard-result">Povećao atletske performanse</div></div>
+            </div>
+          </div>
+          <!-- duplicate -->
+          <div class="tcard">
+            <p class="tcard-text">Za četiri mjeseca izgubio sam 18 kg i potpuno promijenio odnos prema treningu. Coaching je potpuno personaliziran — ništa generičko.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">M</div>
+              <div><div class="tcard-name">Marko</div><div class="tcard-result">Izgubio 18 kg za 4 mjeseca</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Nikad nisam mislila da ću uživati u treningu. 2Fit je promijenio moj odnos prema sportu — sada jedva čekam svaku sesiju.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">T</div>
+              <div><div class="tcard-name">Tea</div><div class="tcard-result">Aktivan stil života od 2024.</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Kao sportaš uvijek sam imao nestrukturiran trening. 2Fit je donio organizaciju i napredak koji je vidljiv na svakom natjecanju.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">T</div>
+              <div><div class="tcard-name">Tomislav</div><div class="tcard-result">Povećao atletske performanse</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2 — 19s, hidden mobile -->
+      <div class="testi-col testi-col-md">
+        <div class="testi-col-inner" style="animation-duration:19s;">
+          <div class="tcard">
+            <p class="tcard-text">Isprobao sam mnogo programa, ali 2Fit je stvarno drugačiji. Plan se uklapa u moj stil života i redovite provjere me drže na pravom putu.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">N</div>
+              <div><div class="tcard-name">Neno</div><div class="tcard-result">Član od 2023.</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">U 5 mjeseci napravio sam napredak koji nisam uspio postići u 2 godine samostalnog treninga. Personalizirani plan i praćenje napretka čine razliku.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">L</div>
+              <div><div class="tcard-name">Luka</div><div class="tcard-result">Izgradio 8 kg mišićne mase</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Online coaching s 2Fit-om promijenio je moj pristup fitnessu. Napokon imam plan koji se uklapa u moj život, a rezultati govore sami za sebe.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">A</div>
+              <div><div class="tcard-name">Ana</div><div class="tcard-result">Aktivna 18 mjeseci</div></div>
+            </div>
+          </div>
+          <!-- duplicate -->
+          <div class="tcard">
+            <p class="tcard-text">Isprobao sam mnogo programa, ali 2Fit je stvarno drugačiji. Plan se uklapa u moj stil života i redovite provjere me drže na pravom putu.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">N</div>
+              <div><div class="tcard-name">Neno</div><div class="tcard-result">Član od 2023.</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">U 5 mjeseci napravio sam napredak koji nisam uspio postići u 2 godine samostalnog treninga. Personalizirani plan i praćenje napretka čine razliku.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">L</div>
+              <div><div class="tcard-name">Luka</div><div class="tcard-result">Izgradio 8 kg mišićne mase</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Online coaching s 2Fit-om promijenio je moj pristup fitnessu. Napokon imam plan koji se uklapa u moj život, a rezultati govore sami za sebe.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">A</div>
+              <div><div class="tcard-name">Ana</div><div class="tcard-result">Aktivna 18 mjeseci</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3 — 17s, hidden below 1024px -->
+      <div class="testi-col testi-col-lg">
+        <div class="testi-col-inner" style="animation-duration:17s;">
+          <div class="tcard">
+            <p class="tcard-text">Bila sam zaglavljena na istom platou gotovo dvije godine. U roku od 6 tjedana rada s 2Fit postigla sam novi osobni rekord u svakoj vježbi.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">K</div>
+              <div><div class="tcard-name">Kristina</div><div class="tcard-result">Probila plato od 2 godine</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Moj bench press porastao je za 40 kg u 6 mjeseci. Program je precizno prilagođen i stalno se razvija zajedno sa mnom — nikad nisam stagnirat.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">I</div>
+              <div><div class="tcard-name">Ivan</div><div class="tcard-result">Poboljšao snagu za 40%</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Izgubila sam 12 kg, ali najvažnija promjena je kako se osjećam. Više energije, bolji san i zdraviji odnos s hranom nego ikad prije.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">P</div>
+              <div><div class="tcard-name">Petra</div><div class="tcard-result">Izgubila 12 kg za 5 mjeseci</div></div>
+            </div>
+          </div>
+          <!-- duplicate -->
+          <div class="tcard">
+            <p class="tcard-text">Bila sam zaglavljena na istom platou gotovo dvije godine. U roku od 6 tjedana rada s 2Fit postigla sam novi osobni rekord u svakoj vježbi.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">K</div>
+              <div><div class="tcard-name">Kristina</div><div class="tcard-result">Probila plato od 2 godine</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Moj bench press porastao je za 40 kg u 6 mjeseci. Program je precizno prilagođen i stalno se razvija zajedno sa mnom — nikad nisam stagnirat.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">I</div>
+              <div><div class="tcard-name">Ivan</div><div class="tcard-result">Poboljšao snagu za 40%</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Izgubila sam 12 kg, ali najvažnija promjena je kako se osjećam. Više energije, bolji san i zdraviji odnos s hranom nego ikad prije.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">P</div>
+              <div><div class="tcard-name">Petra</div><div class="tcard-result">Izgubila 12 kg za 5 mjeseci</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="faq-eyebrow">Imaš pitanja</div>
+      <h2 class="faq-heading">FAQ</h2>
+    </div>
+
+    <div class="faq-item open">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Kako funkcionira coaching?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Počinjemo besplatnim konzultacijskim pozivom kako bismo razumjeli tvoje ciljeve, trenutnu razinu kondicije i životni stil. Nakon toga gradim potpuno personaliziran plan treninga za tebe, zajedno s prehrambenim smjernicama. Tjednim razgovorima pratimo napredak, prilagođavamo plan i osiguravamo da nastaviš napredovati.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Što ako imam posebne prehrambene potrebe (vegetarijanac, alergije…)?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Nema problema. Prehrambene smjernice koje gradim uvijek su prilagođene tvojim specifičnim potrebama — bilo da si vegetarijanac, vegan, imaš alergije ili intolerancije. Nema generičkih planova prehrane; sve se gradi oko tebe i onoga što tvoje tijelo može i voli.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Potpuni sam početnik — je li ovo pravo za mene?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Apsolutno. Početnici su dobrodošli i program se gradi od nule oko tvoje polazišne točke. Od prvog dana učiš pravilnu tehniku, napreduješ postupno i gradiš temelje za dugoročne rezultate. Ne očekuje se nikakvo prethodno iskustvo.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Koja oprema mi je potrebna?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Ovisi o tvom programu. Pišem planove za potpuno opremljene teretane, kućne postave s minimalnom opremom i sve između. Tijekom konzultacija razgovaramo o tome čemu imaš pristup i dizajniramo tvoj program oko toga.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Koliko dugo traje do prvih rezultata?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Većina klijenata primijeti smislene promjene u roku od 4–6 tjedana — poboljšanu energiju, bolji san i vidljiv napredak u teretani. Značajna fizička transformacija obično zahtijeva 3–6 mjeseci dosljednog rada. Bit ću iskren s tobom o realnim vremenskim okvirima od samog početka.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Mogu li otkazati coaching u bilo kojem trenutku?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Da. Nema dugih ugovora s obvezivanjem. Radije bih da ostaneš jer postižeš sjajne rezultate nego jer si vezan ugovorom. Ipak, dosljednost je ono gdje se transformacija događa — većina klijenata koji se posvete na najmanje 3 mjeseca vidi najveće promjene.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- BOOKING CTA -->
+<section class="booking-section" id="contact">
+  <div class="booking-inner">
+    <div class="booking-eyebrow">Počni danas</div>
+    <h2 class="booking-heading">Spreman za<br>promjenu?</h2>
+    <p class="booking-sub">Rezerviraj besplatne 30-minutne konzultacije. Razgovarat ćemo o tvojim ciljevima, što te je sputavalo i je li 2Fit pravo rješenje za tebe — bez pritiska, bez obveze.</p>
+    <a href="mailto:noelpiskac2008@gmail.com" class="btn-primary" style="font-size:16px; padding:16px 48px;">Rezerviraj besplatni termin</a>
+    <p class="booking-note">Besplatne konzultacije &nbsp;·&nbsp; Bez obveze &nbsp;·&nbsp; Odgovor unutar 24 sata</p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div>
+        <div class="footer-logo"><img src="brand_assets/logo.jpeg" alt="2Fit" style="height:32px; width:auto; mix-blend-mode:lighten; display:block;"></div>
+        <p class="footer-tagline">Osobni fitness coaching prilagođen tebi.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Program</h4>
+        <a href="#coaching">Online coaching</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigacija</h4>
+        <a href="#about">O meni</a>
+        <a href="#achievements">Natjecateljska karijera</a>
+        <a href="#results">Rezultati klijenata</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:noelpiskac2008@gmail.com">noelpiskac2008@gmail.com</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-legal">© 2026 2Fit Fitness Coaching. Sva prava pridržana.</div>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="TikTok">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9.05a8.16 8.16 0 0 0 4.77 1.52V7.12a4.85 4.85 0 0 1-1-.43z"/>
+          </svg>
+        </a>
+        <a href="mailto:noelpiskac2008@gmail.com" class="social-btn" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
