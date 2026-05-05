@@ -85,6 +85,16 @@
     .btn-outline:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
     .btn-outline:active { transform: scale(0.97); }
 
+    /* ── HERO LOAD ANIMATION ── */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: heroFadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.05s; }
+    .hero-heading { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.2s; }
+    .hero-body    { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.35s; }
+    .hero-ctas    { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.5s; }
+
     /* ── HERO ── */
     .hero {
       position: relative; min-height: 100vh;
@@ -166,43 +176,45 @@
       border-top: 1px solid var(--border);
     }
     .coaching-inner { max-width: 1240px; margin: 0 auto; }
-    .coaching-header {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 48px; align-items: end; margin-bottom: 64px;
-    }
-    .coaching-eyebrow {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 14px;
+    .coaching-split {
+      display: grid; grid-template-columns: 1fr 480px;
+      gap: 80px; align-items: center;
     }
     .coaching-heading {
       font-size: clamp(34px, 4vw, 54px); font-weight: 800;
       line-height: 1.08; letter-spacing: -0.025em; color: #fff;
+      margin-bottom: 40px;
     }
-    .coaching-sub {
-      font-size: 16px; line-height: 1.75; color: var(--muted); font-weight: 400; align-self: end;
-    }
-    .coaching-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; background: rgba(0,0,0,0.3);
-      border-radius: 12px; overflow: hidden;
-    }
+    .coaching-features-list { display: flex; flex-direction: column; gap: 28px; }
     .coaching-feature {
-      background: var(--surface);
-      padding: 40px 32px;
-      transition: background 0.2s ease;
+      display: flex; align-items: flex-start; gap: 18px;
+      transition: opacity 0.2s ease;
     }
-    .coaching-feature:hover { background: #2D2D2D; }
+    .coaching-feature:hover { opacity: 0.85; }
     .feature-icon {
-      width: 48px; height: 48px;
+      width: 42px; height: 42px; flex-shrink: 0;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 22px; flex-shrink: 0;
     }
-    .feature-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; }
-    .feature-desc { font-size: 14px; line-height: 1.75; color: var(--muted); }
-    .coaching-cta { text-align: center; margin-top: 56px; }
+    .feature-text { flex: 1; }
+    .feature-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .feature-desc { font-size: 13px; line-height: 1.7; color: var(--muted); }
+    .coaching-cta { margin-top: 44px; }
+    .coaching-right {
+      position: relative; border-radius: 16px; overflow: hidden;
+      aspect-ratio: 3/4;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .coaching-right img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
+      filter: contrast(1.05) saturate(0.85); display: block;
+    }
+    .coaching-right-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(14,14,14,0.55) 100%);
+    }
 
     /* ── COACH ── */
     .coach-section {
@@ -525,8 +537,8 @@
       .coaching-section, .coach-section, .testimonials-section,
       .faq-section, .achievement-section { padding: 72px 24px; }
       .booking-section { padding: 80px 24px; background: radial-gradient(ellipse 120% 80% at 50% 50%, rgba(216,216,216,0.13), transparent 70%), var(--bg-dark); }
-      .coaching-header { grid-template-columns: 1fr; gap: 24px; }
-      .coaching-grid { grid-template-columns: 1fr; }
+      .coaching-split { grid-template-columns: 1fr; gap: 48px; }
+      .coaching-right { aspect-ratio: 4/3; max-width: 100%; }
       .coach-inner { grid-template-columns: 1fr; gap: 48px; }
       .coach-photo-wrap { aspect-ratio: 4/3; max-width: 480px; }
       .achievement-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -589,10 +601,6 @@
       <div class="stat-number">5+ godina</div>
       <div class="stat-label">Iskustva u coachingu</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-number">93%</div>
-      <div class="stat-label">Stopa postizanja ciljeva</div>
-    </div>
   </div>
 </div>
 
@@ -600,98 +608,80 @@
 <!-- ONLINE COACHING SHOWCASE -->
 <section class="coaching-section" id="coaching">
   <div class="coaching-inner">
+    <div class="coaching-split">
 
-    <div class="coaching-header">
+      <!-- LEFT: heading + features -->
       <div>
-        <div class="coaching-eyebrow">Online Coaching</div>
         <h2 class="coaching-heading" style="font-size: clamp(44px, 5.5vw, 72px);">Sve što trebaš.</h2>
-      </div>
-      <p class="coaching-sub">
-        Personalizirani online coaching program dizajniran oko tebe — tvojih ciljeva, rasporeda i životnog stila. Isti rezultati kao u osobnom treningu, bez obzira gdje se nalaziš.
-      </p>
-    </div>
+        <div class="coaching-features-list">
 
-    <div class="coaching-grid">
+          <div class="coaching-feature">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <div class="feature-text">
+              <div class="feature-title">Personalizirani plan treninga</div>
+              <p class="feature-desc">Svaki program gradim od nule oko tvog tijela, opreme i ciljeva. Nema predložaka, nema generičkih planova.</p>
+            </div>
+          </div>
 
-      <div class="coaching-feature">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-          </svg>
+          <div class="coaching-feature">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+                <line x1="4" y1="6" x2="4" y2="18"/><line x1="4" y1="6" x2="8" y2="6"/><line x1="4" y1="12" x2="10" y2="12"/>
+                <circle cx="8" cy="6" r="2"/><circle cx="14" cy="12" r="2"/>
+                <line x1="14" y1="12" x2="20" y2="12"/><line x1="16" y1="18" x2="20" y2="18"/>
+                <circle cx="16" cy="18" r="2"/><line x1="16" y1="18" x2="4" y2="18"/>
+              </svg>
+            </div>
+            <div class="feature-text">
+              <div class="feature-title">Prilagodba</div>
+              <p class="feature-desc">Coaching se kontinuirano prilagođava tebi — kako se mijenjaju tvoji ciljevi, raspored ili životni stil, program ide s tobom.</p>
+            </div>
+          </div>
+
+          <div class="coaching-feature">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div class="feature-text">
+              <div class="feature-title">Podrška putem poruka</div>
+              <p class="feature-desc">Izravna podrška između sesija. Imaš pitanje ili problem — tu sam. Bez čekanja, bez posrednika.</p>
+            </div>
+          </div>
+
+          <div class="coaching-feature">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="feature-text">
+              <div class="feature-title">Praćenje napretka</div>
+              <p class="feature-desc">Svaki tjedan analiziramo podatke i prilagođavamo program — tako da uvijek napreduješ, nikad ne staješ.</p>
+            </div>
+          </div>
+
         </div>
-        <div class="feature-title">Personalizirani plan treninga</div>
-        <p class="feature-desc">Svaki program gradim od nule oko tvog tijela, opreme i ciljeva. Nema predložaka, nema generičkih planova.</p>
-      </div>
-
-      <div class="coaching-feature">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-            <line x1="4" y1="6" x2="4" y2="18"/>
-            <line x1="4" y1="6" x2="8" y2="6"/>
-            <line x1="4" y1="12" x2="10" y2="12"/>
-            <circle cx="8" cy="6" r="2"/>
-            <circle cx="14" cy="12" r="2"/>
-            <line x1="14" y1="12" x2="20" y2="12"/>
-            <line x1="16" y1="18" x2="20" y2="18"/>
-            <circle cx="16" cy="18" r="2"/>
-            <line x1="16" y1="18" x2="4" y2="18"/>
-          </svg>
+        <div class="coaching-cta">
+          <a href="#contact" class="btn-primary" style="font-size:16px; padding:16px 48px;">Započni program</a>
         </div>
-        <div class="feature-title">Prilagodba</div>
-        <p class="feature-desc">Coaching se kontinuirano prilagođava tebi — kako se mijenjaju tvoji ciljevi, raspored ili životni stil, program ide s tobom.</p>
-      </div>
-
-      <div class="coaching-feature">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-            <polygon points="23 7 16 12 23 17 23 7"/>
-            <rect x="1" y="5" width="15" height="14" rx="2"/>
-          </svg>
-        </div>
-        <div class="feature-title">Video knjižnica vježbi</div>
-        <p class="feature-desc">Pristup video demonstracijama svake vježbe u tvojem programu s uputama za pravilnu tehniku.</p>
-      </div>
-
-      <div class="coaching-feature">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-            <path d="M12 2a10 10 0 1 0 10 10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
-        </div>
-        <div class="feature-title">Prehrambene smjernice</div>
-        <p class="feature-desc">Prilagođene smjernice za prehranu koje se uklapaju u tvoj životni stil — bez restriktivnih dijeta.</p>
-      </div>
-
-      <div class="coaching-feature">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-        </div>
-        <div class="feature-title">Podrška putem poruka</div>
-        <p class="feature-desc">Izravna podrška između sesija. Imaš pitanje ili problem — tu sam. Bez čekanja, bez posrednika.</p>
       </div>
 
-      <div class="coaching-feature">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
-        </div>
-        <div class="feature-title">Praćenje napretka</div>
-        <p class="feature-desc">Svaki tjedan analiziramo podatke i prilagođavamo program — tako da uvijek napreduješ, nikad ne staješ.</p>
+      <!-- RIGHT: image -->
+      <div class="coaching-right">
+        <img src="WhatsApp%20Image%202026-04-19%20at%2011.24.19.jpeg" alt="Leon Piskač coaching">
+        <div class="coaching-right-overlay"></div>
       </div>
 
     </div>
-
-    <div class="coaching-cta">
-      <a href="#contact" class="btn-primary" style="font-size:16px; padding:16px 48px;">Započni program</a>
-    </div>
-
   </div>
 </section>
 
