@@ -212,6 +212,60 @@
       display: block;
     }
 
+    /* ── TRANSFORMATIONS ── */
+    .transforms-section {
+      background: var(--bg-dark);
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .transforms-inner { max-width: 1240px; margin: 0 auto; }
+    .transforms-header { text-align: center; margin-bottom: 64px; }
+    .transforms-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .transforms-heading {
+      font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+      line-height: 1.08; letter-spacing: -0.025em; color: #fff;
+    }
+    .transforms-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .transform-card {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .transform-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; background: rgba(0,0,0,0.5);
+    }
+    .transform-img-wrap {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .transform-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .transform-card:hover .transform-img { transform: scale(1.03); }
+    .transform-label {
+      position: absolute; bottom: 12px; left: 12px;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px; padding: 5px 14px;
+      font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.7);
+      letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .transform-label.after {
+      background: rgba(216,216,216,0.18);
+      color: #fff;
+    }
+
     /* ── COACH ── */
     .coach-section {
       background: var(--bg);
@@ -529,7 +583,8 @@
       .stat-item:nth-child(odd):not(:last-child) { border-right: 1px solid rgba(255,255,255,0.1); }
       .stat-item:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.1); }
       .coaching-section, .coach-section, .testimonials-section,
-      .faq-section, .achievement-section { padding: 72px 24px; }
+      .faq-section, .achievement-section, .transforms-section { padding: 72px 24px; }
+      .transforms-grid { grid-template-columns: 1fr; gap: 16px; }
       .booking-section { padding: 80px 24px; background: radial-gradient(ellipse 120% 80% at 50% 50%, rgba(216,216,216,0.13), transparent 70%), var(--bg-dark); }
       .coaching-split { display: flex; flex-direction: column; gap: 72px; }
       .coaching-split > div:first-child { order: 1; }
@@ -602,79 +657,72 @@
 </div>
 
 
-<!-- ONLINE COACHING SHOWCASE -->
-<section class="coaching-section" id="coaching">
-  <div class="coaching-inner">
-    <div class="coaching-split">
 
-      <!-- LEFT: heading + features -->
-      <div>
-        <h2 class="coaching-heading" style="font-size: clamp(44px, 5.5vw, 72px);">Sve što trebaš.</h2>
-        <div class="coaching-features-list">
+<!-- TRANSFORMATIONS -->
+<section class="transforms-section" id="transformations">
+  <div class="transforms-inner">
 
-          <div class="coaching-feature">
-            <div class="feature-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-              </svg>
-            </div>
-            <div class="feature-text">
-              <div class="feature-title">Personalizirani plan treninga</div>
-              <p class="feature-desc">Svaki program gradim od nule oko tvog tijela, opreme i ciljeva. Nema predložaka, nema generičkih planova.</p>
-            </div>
+    <div class="transforms-header">
+      <div class="transforms-eyebrow">Transformacije</div>
+      <h2 class="transforms-heading">Rezultati klijenata</h2>
+    </div>
+
+    <div class="transforms-grid">
+
+      <!-- 1 -->
+      <div class="transform-card">
+        <div class="transform-pair">
+          <div class="transform-img-wrap">
+            <img src="prije.jpeg" alt="Prije" class="transform-img">
+            <span class="transform-label">Prije</span>
           </div>
-
-          <div class="coaching-feature">
-            <div class="feature-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-                <line x1="4" y1="6" x2="4" y2="18"/><line x1="4" y1="6" x2="8" y2="6"/><line x1="4" y1="12" x2="10" y2="12"/>
-                <circle cx="8" cy="6" r="2"/><circle cx="14" cy="12" r="2"/>
-                <line x1="14" y1="12" x2="20" y2="12"/><line x1="16" y1="18" x2="20" y2="18"/>
-                <circle cx="16" cy="18" r="2"/><line x1="16" y1="18" x2="4" y2="18"/>
-              </svg>
-            </div>
-            <div class="feature-text">
-              <div class="feature-title">Prilagodba</div>
-              <p class="feature-desc">Coaching se kontinuirano prilagođava tebi — kako se mijenjaju tvoji ciljevi, raspored ili životni stil, program ide s tobom.</p>
-            </div>
+          <div class="transform-img-wrap">
+            <img src="posle.jpeg" alt="Poslije" class="transform-img">
+            <span class="transform-label after">Poslije</span>
           </div>
-
-          <div class="coaching-feature">
-            <div class="feature-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-            </div>
-            <div class="feature-text">
-              <div class="feature-title">Podrška putem poruka</div>
-              <p class="feature-desc">Izravna podrška između sesija. Imaš pitanje ili problem — tu sam. Bez čekanja, bez posrednika.</p>
-            </div>
-          </div>
-
-          <div class="coaching-feature">
-            <div class="feature-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-              </svg>
-            </div>
-            <div class="feature-text">
-              <div class="feature-title">Praćenje napretka</div>
-              <p class="feature-desc">Svaki tjedan analiziramo podatke i prilagođavamo program — tako da uvijek napreduješ, nikad ne staješ.</p>
-            </div>
-          </div>
-
-        </div>
-        <div class="coaching-cta">
-          <a href="#contact" class="btn-primary" style="font-size:16px; padding:16px 48px;">Započni program</a>
         </div>
       </div>
 
-      <!-- RIGHT: logo -->
-      <div class="coaching-right">
-        <img src="brand_assets/logo.jpeg" alt="2Fit">
+      <!-- 2 -->
+      <div class="transform-card">
+        <div class="transform-pair">
+          <div class="transform-img-wrap">
+            <img src="prije%202%20.jpeg" alt="Prije" class="transform-img">
+            <span class="transform-label">Prije</span>
+          </div>
+          <div class="transform-img-wrap">
+            <img src="posle%202.jpeg" alt="Poslije" class="transform-img">
+            <span class="transform-label after">Poslije</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="transform-card">
+        <div class="transform-pair">
+          <div class="transform-img-wrap">
+            <img src="prije%203.jpeg" alt="Prije" class="transform-img">
+            <span class="transform-label">Prije</span>
+          </div>
+          <div class="transform-img-wrap">
+            <img src="posle%203.jpeg" alt="Poslije" class="transform-img">
+            <span class="transform-label after">Poslije</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="transform-card">
+        <div class="transform-pair">
+          <div class="transform-img-wrap">
+            <img src="prije%204.jpeg" alt="Prije" class="transform-img">
+            <span class="transform-label">Prije</span>
+          </div>
+          <div class="transform-img-wrap">
+            <img src="posle%204.jpeg" alt="Poslije" class="transform-img">
+            <span class="transform-label after">Poslije</span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -699,7 +747,7 @@
       <div class="coach-eyebrow">Upoznaj svog trenera</div>
       <h2 class="coach-heading">Leon Piskač</h2>
       <p class="coach-body">
-        Zovem se Leon, imam 23 godine i profesionalni sam fitness trener s više od 5 godina iskustva. Pomogao sam preko 100 klijenata da postignu vidljive i dugoročne rezultate, a s mnogima od njih surađujem već godinama.
+        Imam 23 godine i profesionalni sam fitness trener s više od 5 godina iskustva. Pomogao sam preko 100 klijenata da postignu vidljive i dugoročne rezultate, a s mnogima od njih surađujem već godinama.
       </p>
       <p class="coach-body">
         Specijaliziran sam za individualni pristup — svaki plan treninga i prehrane prilagođen je tvojem cilju, tempu i životnom stilu.
@@ -801,148 +849,162 @@
 
     <div class="testi-columns">
 
-      <!-- Column 1 — 15s -->
+      <!-- Column 1 -->
       <div class="testi-col">
-        <div class="testi-col-inner" style="animation-duration:15s;">
+        <div class="testi-col-inner" style="animation-duration:30s;">
           <div class="tcard">
-            <p class="tcard-text">Za četiri mjeseca izgubio sam 18 kg i potpuno promijenio odnos prema treningu. Coaching je potpuno personaliziran — ništa generičko.</p>
+            <p class="tcard-text">Najviše mi se sviđa to što je sve prilagođeno meni, od treninga do prehrane. Trener odgovara brzo i uvijek ima konkretan savjet.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">M</div>
-              <div><div class="tcard-name">Marko</div><div class="tcard-result">Izgubio 18 kg za 4 mjeseca</div></div>
+              <div><div class="tcard-name">Marko</div><div class="tcard-result">Online coaching klijent</div></div>
             </div>
           </div>
           <div class="tcard">
-            <p class="tcard-text">Nikad nisam mislila da ću uživati u treningu. 2Fit je promijenio moj odnos prema sportu — sada jedva čekam svaku sesiju.</p>
+            <p class="tcard-text">Prije sam stalno odustajao nakon 2-3 tjedna. Ovdje me držala ta neka odgovornost jer netko prati moj napredak.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">T</div>
-              <div><div class="tcard-name">Tea</div><div class="tcard-result">Aktivan stil života od 2024.</div></div>
+              <div><div class="tcard-name">Tomislav</div><div class="tcard-result">Aktivan 6+ mjeseci</div></div>
             </div>
           </div>
           <div class="tcard">
-            <p class="tcard-text">Kao sportaš uvijek sam imao nestrukturiran trening. 2Fit je donio organizaciju i napredak koji je vidljiv na svakom natjecanju.</p>
+            <p class="tcard-text">Coaching je super za ljude koji nemaju vremena. Sve je jasno, nema filozofije, samo radiš i vidiš rezultate.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">L</div>
+              <div><div class="tcard-name">Luka</div><div class="tcard-result">Online coaching klijent</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Komunikacija je top. Kad nemam motivacije, uvijek dobijem konkretan feedback, ne samo "ajmo dalje".</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">T</div>
-              <div><div class="tcard-name">Tomislav</div><div class="tcard-result">Povećao atletske performanse</div></div>
+              <div><div class="tcard-name">Tea</div><div class="tcard-result">Online coaching klijentica</div></div>
             </div>
           </div>
           <!-- duplicate -->
           <div class="tcard">
-            <p class="tcard-text">Za četiri mjeseca izgubio sam 18 kg i potpuno promijenio odnos prema treningu. Coaching je potpuno personaliziran — ništa generičko.</p>
+            <p class="tcard-text">Najviše mi se sviđa to što je sve prilagođeno meni, od treninga do prehrane. Trener odgovara brzo i uvijek ima konkretan savjet.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">M</div>
-              <div><div class="tcard-name">Marko</div><div class="tcard-result">Izgubio 18 kg za 4 mjeseca</div></div>
+              <div><div class="tcard-name">Marko</div><div class="tcard-result">Online coaching klijent</div></div>
             </div>
           </div>
           <div class="tcard">
-            <p class="tcard-text">Nikad nisam mislila da ću uživati u treningu. 2Fit je promijenio moj odnos prema sportu — sada jedva čekam svaku sesiju.</p>
+            <p class="tcard-text">Prije sam stalno odustajao nakon 2-3 tjedna. Ovdje me držala ta neka odgovornost jer netko prati moj napredak.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">T</div>
-              <div><div class="tcard-name">Tea</div><div class="tcard-result">Aktivan stil života od 2024.</div></div>
+              <div><div class="tcard-name">Tomislav</div><div class="tcard-result">Aktivan 6+ mjeseci</div></div>
             </div>
           </div>
           <div class="tcard">
-            <p class="tcard-text">Kao sportaš uvijek sam imao nestrukturiran trening. 2Fit je donio organizaciju i napredak koji je vidljiv na svakom natjecanju.</p>
+            <p class="tcard-text">Coaching je super za ljude koji nemaju vremena. Sve je jasno, nema filozofije, samo radiš i vidiš rezultate.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">L</div>
+              <div><div class="tcard-name">Luka</div><div class="tcard-result">Online coaching klijent</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Komunikacija je top. Kad nemam motivacije, uvijek dobijem konkretan feedback, ne samo "ajmo dalje".</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">T</div>
-              <div><div class="tcard-name">Tomislav</div><div class="tcard-result">Povećao atletske performanse</div></div>
+              <div><div class="tcard-name">Tea</div><div class="tcard-result">Online coaching klijentica</div></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Column 2 — 19s, hidden mobile -->
+      <!-- Column 2 — hidden mobile -->
       <div class="testi-col testi-col-md">
-        <div class="testi-col-inner" style="animation-duration:19s;">
+        <div class="testi-col-inner" style="animation-duration:38s;">
           <div class="tcard">
-            <p class="tcard-text">Isprobao sam mnogo programa, ali 2Fit je stvarno drugačiji. Plan se uklapa u moj stil života i redovite provjere me drže na pravom putu.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">N</div>
-              <div><div class="tcard-name">Neno</div><div class="tcard-result">Član od 2023.</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">U 5 mjeseci napravio sam napredak koji nisam uspio postići u 2 godine samostalnog treninga. Personalizirani plan i praćenje napretka čine razliku.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">L</div>
-              <div><div class="tcard-name">Luka</div><div class="tcard-result">Izgradio 8 kg mišićne mase</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">Online coaching s 2Fit-om promijenio je moj pristup fitnessu. Napokon imam plan koji se uklapa u moj život, a rezultati govore sami za sebe.</p>
+            <p class="tcard-text">Jednostavno za pratiti, nema komplikacija. Sve ima smisla i vidiš progres iz tjedna u tjedan.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">A</div>
-              <div><div class="tcard-name">Ana</div><div class="tcard-result">Aktivna 18 mjeseci</div></div>
+              <div><div class="tcard-name">Ana</div><div class="tcard-result">Online coaching klijentica</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Super iskustvo za nekoga tko je početnik. Sve je objašnjeno normalnim jezikom, bez pametovanja.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">K</div>
+              <div><div class="tcard-name">Kristina</div><div class="tcard-result">Počela od nule</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Uzeo sam program više iz znatiželje nego očekivanja, ali me ugodno iznenadilo koliko je sve jednostavno i jasno. Nema kompliciranja, samo radiš i vidiš napredak.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">I</div>
+              <div><div class="tcard-name">Ivan</div><div class="tcard-result">Online coaching klijent</div></div>
             </div>
           </div>
           <!-- duplicate -->
           <div class="tcard">
-            <p class="tcard-text">Isprobao sam mnogo programa, ali 2Fit je stvarno drugačiji. Plan se uklapa u moj stil života i redovite provjere me drže na pravom putu.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">N</div>
-              <div><div class="tcard-name">Neno</div><div class="tcard-result">Član od 2023.</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">U 5 mjeseci napravio sam napredak koji nisam uspio postići u 2 godine samostalnog treninga. Personalizirani plan i praćenje napretka čine razliku.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">L</div>
-              <div><div class="tcard-name">Luka</div><div class="tcard-result">Izgradio 8 kg mišićne mase</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">Online coaching s 2Fit-om promijenio je moj pristup fitnessu. Napokon imam plan koji se uklapa u moj život, a rezultati govore sami za sebe.</p>
+            <p class="tcard-text">Jednostavno za pratiti, nema komplikacija. Sve ima smisla i vidiš progres iz tjedna u tjedan.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">A</div>
-              <div><div class="tcard-name">Ana</div><div class="tcard-result">Aktivna 18 mjeseci</div></div>
+              <div><div class="tcard-name">Ana</div><div class="tcard-result">Online coaching klijentica</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Super iskustvo za nekoga tko je početnik. Sve je objašnjeno normalnim jezikom, bez pametovanja.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">K</div>
+              <div><div class="tcard-name">Kristina</div><div class="tcard-result">Počela od nule</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Uzeo sam program više iz znatiželje nego očekivanja, ali me ugodno iznenadilo koliko je sve jednostavno i jasno. Nema kompliciranja, samo radiš i vidiš napredak.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">I</div>
+              <div><div class="tcard-name">Ivan</div><div class="tcard-result">Online coaching klijent</div></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Column 3 — 17s, hidden below 1024px -->
+      <!-- Column 3 — hidden below 1024px -->
       <div class="testi-col testi-col-lg">
-        <div class="testi-col-inner" style="animation-duration:17s;">
+        <div class="testi-col-inner" style="animation-duration:34s;">
           <div class="tcard">
-            <p class="tcard-text">Bila sam zaglavljena na istom platou gotovo dvije godine. U roku od 6 tjedana rada s 2Fit postigla sam novi osobni rekord u svakoj vježbi.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">K</div>
-              <div><div class="tcard-name">Kristina</div><div class="tcard-result">Probila plato od 2 godine</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">Moj bench press porastao je za 40 kg u 6 mjeseci. Program je precizno prilagođen i stalno se razvija zajedno sa mnom — nikad nisam stagnirat.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">I</div>
-              <div><div class="tcard-name">Ivan</div><div class="tcard-result">Poboljšao snagu za 40%</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">Izgubila sam 12 kg, ali najvažnija promjena je kako se osjećam. Više energije, bolji san i zdraviji odnos s hranom nego ikad prije.</p>
+            <p class="tcard-text">Bez presinga i forsiranja, ali opet imaš odgovornost. Dobra kombinacija.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">P</div>
-              <div><div class="tcard-name">Petra</div><div class="tcard-result">Izgubila 12 kg za 5 mjeseci</div></div>
+              <div><div class="tcard-name">Petra</div><div class="tcard-result">Online coaching klijentica</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Program mi je sjeo jer nije kompliciran. Uz posao i sve obaveze, mogu ga pratiti bez stresa.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">M</div>
+              <div><div class="tcard-name">Matej</div><div class="tcard-result">Online coaching klijent</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Super iskustvo, pogotovo za nekoga tko želi krenuti ali ne zna kako.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">S</div>
+              <div><div class="tcard-name">Sara</div><div class="tcard-result">Online coaching klijentica</div></div>
             </div>
           </div>
           <!-- duplicate -->
           <div class="tcard">
-            <p class="tcard-text">Bila sam zaglavljena na istom platou gotovo dvije godine. U roku od 6 tjedana rada s 2Fit postigla sam novi osobni rekord u svakoj vježbi.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">K</div>
-              <div><div class="tcard-name">Kristina</div><div class="tcard-result">Probila plato od 2 godine</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">Moj bench press porastao je za 40 kg u 6 mjeseci. Program je precizno prilagođen i stalno se razvija zajedno sa mnom — nikad nisam stagnirat.</p>
-            <div class="tcard-footer">
-              <div class="tcard-avatar">I</div>
-              <div><div class="tcard-name">Ivan</div><div class="tcard-result">Poboljšao snagu za 40%</div></div>
-            </div>
-          </div>
-          <div class="tcard">
-            <p class="tcard-text">Izgubila sam 12 kg, ali najvažnija promjena je kako se osjećam. Više energije, bolji san i zdraviji odnos s hranom nego ikad prije.</p>
+            <p class="tcard-text">Bez presinga i forsiranja, ali opet imaš odgovornost. Dobra kombinacija.</p>
             <div class="tcard-footer">
               <div class="tcard-avatar">P</div>
-              <div><div class="tcard-name">Petra</div><div class="tcard-result">Izgubila 12 kg za 5 mjeseci</div></div>
+              <div><div class="tcard-name">Petra</div><div class="tcard-result">Online coaching klijentica</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Program mi je sjeo jer nije kompliciran. Uz posao i sve obaveze, mogu ga pratiti bez stresa.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">M</div>
+              <div><div class="tcard-name">Matej</div><div class="tcard-result">Online coaching klijent</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <p class="tcard-text">Super iskustvo, pogotovo za nekoga tko želi krenuti ali ne zna kako.</p>
+            <div class="tcard-footer">
+              <div class="tcard-avatar">S</div>
+              <div><div class="tcard-name">Sara</div><div class="tcard-result">Online coaching klijentica</div></div>
             </div>
           </div>
         </div>
